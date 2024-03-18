@@ -38,12 +38,21 @@ public:
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
+
 signals:
     void KeyPressed();
 
 private slots:
     void on_actionOpen_File_triggered();
+protected:
+    void paintEvent(QPaintEvent *event) override
+    {
+        QPainter painter(this);
 
+        QPoint startPoint(50, 100); // 起点坐标
+        QPoint endPoint(350, 200); // 终点坐标
+        painter.drawLine(startPoint, endPoint);
+    }
 private:
     Ui::ModelViewer *ui;
 
@@ -51,6 +60,7 @@ private:
     Scene *scene;
 
     QString currentFile = "";
+
 };
 
 #endif // MODELVIEWER_H
